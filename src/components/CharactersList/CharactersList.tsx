@@ -1,33 +1,21 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
 import { Grid } from "@mui/material";
 
 import CharacterCard from "../CharacterCard/CharacterCard";
-import { Character } from "@types";
+import styles from './CharactersList.module.scss';
+import { CharacterLite } from "@types";
+import { Link } from "react-router-dom";
 
-const GET_ALL_PERSONS = gql`
-  query {
-    characters {
-      results {
-        id
-        name
-        image
-      }
-    }
-  }
-`;
+interface IProps {
+  characters: CharacterLite[]
+}
 
-export default function CharactersList() {
-  const { data, loading, error } = useQuery(GET_ALL_PERSONS);
-
-  console.log({ data, loading, error });
-
-  if (loading) return <div>loading...</div>;
+export default function CharactersList({characters}: IProps) {
 
   return (
     <div>
       <Grid container spacing={2}>
-        {data?.characters?.results?.map((val: Character) => <CharacterCard character={val} />)}
+        {characters?.map((val: CharacterLite) => <CharacterCard character={val} key={val.id} />)}
       </Grid>
     </div>
   );

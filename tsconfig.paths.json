@@ -10,6 +10,12 @@
       ],
       "@types": [
         "./types"
+      ],
+      "@api": [
+        "./api"
+      ],
+      "@store": [
+        "./store"
       ]
     }
   }
