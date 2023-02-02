@@ -1,9 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { characters } from "@store";
-import { useEffect, useState } from "react";
+import { characters, uiState } from "@store";
+import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 import CharacterMain from "@components/CharacterMain";
+import { Container, CircularProgress } from "@mui/material";
+import EpisodesContainer from "@components/EpisodesContainer";
 
 const CharacterDetail = observer(() => {
   const { id } = useParams();
@@ -11,18 +13,36 @@ const CharacterDetail = observer(() => {
     if (id) characters.getDetailedCharacter(Number(id));
   }, [id]);
 
-  if (characters.detailedCharacter) {
+  useEffect(() => {
+    uiState.setPage("characters");
+    return () => {
+      if (id !== characters.detailedCharacter?.id) {
+      }
+    };
+  }, []);
+
+  if (
+    characters.detailedCharacter &&
+    characters.detailedCharacter?.id.toString() === id
+  ) {
     return (
-      <div className="detailed-page">
-        <Link to="/">Home</Link>
-        <CharacterMain info={characters.detailedCharacter}/>
-        <div className="">{characters.detailedCharacter?.name}</div>
-      </div>
+      <Container sx={{ padding: "2rem 10rem", justifyContent: "center" }}>
+        <CharacterMain info={characters.detailedCharacter} />
+        <EpisodesContainer />
+      </Container>
     );
   } else {
-    return <div className="">NO SUCH CHARACTER</div>
+    return (
+      <CircularProgress
+        sx={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
+    );
   }
-  
 });
 
 export default CharacterDetail;

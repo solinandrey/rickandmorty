@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  font-size: 1vw;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.fadeIn {
+  animation: 0.5s fadeIn forwards;
+}
+
+.fadeOut {
+  animation: 0.5s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(-20px, 0);
+    opacity: 0;
+  }
+}
+
+.fade-enter.cards {
+  opacity: 0;
+  transform: translateY(-2%);
+}
+.fade-enter-active.cards {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.fade-exit.cards {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.fade-exit-active.cards {
+  opacity: 0;
+  transform: translateY(2%);
+}
+.fade-enter-active.cards,
+.fade-exit-active.cards {
+  transition: opacity 200ms, transform 200ms;
+}

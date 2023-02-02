@@ -1,0 +1,33 @@
+.mainInfo {
+  display: flex;
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid #232323;
+  width: 14rem;
+  height: 14rem;
+}
+
+.container {
+  border-radius: 0.5rem;
+  margin-top: 3rem;
+}
+
+.row {
+  display: flex;
+}
+
+.textInfo {
+  margin-left: 3rem;
+  width: 55%;
+}
+
+.status {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+}

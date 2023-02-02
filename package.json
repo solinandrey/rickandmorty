@@ -8,6 +8,10 @@
     "@craco/types": "^7.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/fjalla-one": "^4.5.9",
+    "@fontsource/francois-one": "^4.5.9",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -24,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.57.1",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"

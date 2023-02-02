@@ -1,5 +1,5 @@
-import CharactersList from "@components/CharactersList";
-import { characters, uiState } from "@store";
+import LocationsList from "@components/LocationsList";
+import { locations, uiState } from "@store";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import {
@@ -11,21 +11,21 @@ import {
 } from "@mui/material";
 import { useParams, useSearchParams } from "react-router-dom";
 
-const CharactersPage = observer(() => {
+const LocationsPage = observer(() => {
   const [query, setQuery] = useSearchParams();
   const [searchTimeout, setSearchTimeout] = useState<number | null>(null);
   const [page, setPage] = useState<number>(0);
 
   useEffect(() => {
-    characters.getCharacters(Number(query.get("page")) || 1);
-    uiState.setPage("characters");
+    locations.getLocations(Number(query.get("page")) || 1);
+    uiState.setPage("locations");
     if (!query.get("page")) {
       setQuery({ page: "1" });
     }
   }, []);
 
   const onPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    characters.getCharacters(value);
+    locations.getLocations(value);
     const params = { page: String(value) };
     setQuery(params);
     setPage(value);
@@ -39,7 +39,7 @@ const CharactersPage = observer(() => {
     }
     setSearchTimeout(() => {
       return window.setTimeout(() => {
-        characters.getCharacters(1, event.target.value);
+        locations.getLocations(1, event.target.value);
       }, 400);
     });
   };
@@ -63,18 +63,18 @@ const CharactersPage = observer(() => {
           lineHeight: 1,
         }}
       >
-        Characters
+        Locations
       </Typography>
       <TextField
         id="outlined-basic"
         label="Search by name"
         variant="outlined"
         onChange={searchByName}
-        sx={{ width: 500, marginBottom: "4rem" }}
+        sx={{ width: 500, marginBottom: "2rem" }}
       />
-      {characters.charactersList.length ? (
+      {locations.locationsList.length || true ? (
         <>
-          <CharactersList charactersList={characters.charactersList} page={page} />
+          <LocationsList locationsList={locations.locationsList} page={page} />
           <Box
             sx={{
               width: "100%",
@@ -84,7 +84,7 @@ const CharactersPage = observer(() => {
             }}
           >
             <Pagination
-              count={characters?.paginationInfo?.pages}
+              count={locations?.paginationInfo?.pages}
               onChange={onPageChange}
               page={page || 1}
             />
@@ -97,4 +97,4 @@ const CharactersPage = observer(() => {
   );
 });
 
-export default CharactersPage;
+export default LocationsPage;
