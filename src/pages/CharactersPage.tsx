@@ -40,6 +40,7 @@ const CharactersPage = observer(() => {
     setSearchTimeout(() => {
       return window.setTimeout(() => {
         characters.getCharacters(1, event.target.value);
+        onPageChange({} as React.ChangeEvent<unknown>, 1);
       }, 400);
     });
   };

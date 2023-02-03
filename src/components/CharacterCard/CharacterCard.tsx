@@ -15,7 +15,7 @@ const CharacterCard = ({
   onCharacterClick,
 }: IProps) => {
   return (
-    <Box className={styles.card} onClick={onCharacterClick}>
+    <Box className={styles.card} onClick={onCharacterClick} sx={{minHeight: '5.2rem'}}>
       <Box
         sx={{
           width: "30%",
