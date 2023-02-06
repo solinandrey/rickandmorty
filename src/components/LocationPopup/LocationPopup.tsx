@@ -12,40 +12,11 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import CharacterCard from "@components/CharacterCard";
 import { Link } from "react-router-dom";
-
-const modalStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "auto",
-  minWidth: "30rem",
-  bgcolor: "background.paper",
-  outline: "none",
-  border: "2px solid #000",
-  borderRadius: "0.5rem",
-  overflowY: "auto",
-  maxHeight: "40rem",
-  p: 4,
-};
-
-const closeButtonStyle = {
-  position: "absolute",
-  top: "0.6rem",
-  right: "0.6rem",
-  cursor: "pointer",
-};
-
-const titleStyle = {
-  fontFamily: "Francois One",
-  fontSize: "3rem",
-  textAlign: "center",
-  marginBottom: "2rem",
-  lineHeight: 1,
-};
+import {
+  modalStyle,
+  closeButtonStyle,
+  titleStyle,
+} from "./LocationPopupStyles";
 
 interface IProps {
   id: number;
@@ -56,7 +27,7 @@ interface IProps {
 const LocationPopup = observer(({ id, open, handleClose }: IProps) => {
   useEffect(() => {
     locations.setResidents([]);
-    locations.setActiveLocation('');
+    locations.setActiveLocation("");
     locations.getResidents(id);
   }, []);
 
@@ -95,7 +66,9 @@ const LocationPopup = observer(({ id, open, handleClose }: IProps) => {
                 );
               })
             ) : (
-              <CircularProgress sx={{marginLeft: "auto", marginRight: "auto"}}/>
+              <CircularProgress
+                sx={{ marginLeft: "auto", marginRight: "auto" }}
+              />
             )}
           </Grid>
         </Box>

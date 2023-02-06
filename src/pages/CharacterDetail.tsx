@@ -5,7 +5,6 @@ import { observer } from "mobx-react-lite";
 
 import CharacterMain from "@components/CharacterMain";
 import { Container, CircularProgress } from "@mui/material";
-import EpisodesContainer from "@components/EpisodesContainer";
 
 const CharacterDetail = observer(() => {
   const { id } = useParams();
@@ -28,7 +27,6 @@ const CharacterDetail = observer(() => {
     return (
       <Container sx={{ padding: "2rem 10rem", justifyContent: "center" }}>
         <CharacterMain info={characters.detailedCharacter} />
-        <EpisodesContainer />
       </Container>
     );
   } else {

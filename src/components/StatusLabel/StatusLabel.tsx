@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import { labelStyles } from "./StatusLableStyles";
 
 interface IProps {
   label: string
@@ -14,15 +15,7 @@ const StatusLabel = ({label, large}: IProps) => {
   return (
     <Typography
       component="p"
-      sx={{
-        fontFamily: "Fjalla One",
-        fontSize: large ? "2rem" : '1.1rem',
-        bgcolor: getStatusColor(label),
-        color: 'white',
-        width: "max-content",
-        padding: "0.2rem 0.4rem",
-        borderRadius: "0.5rem",
-      }}
+      sx={{...labelStyles, bgcolor: getStatusColor(label), fontSize: large ? "2rem" : '1.1rem',}}
     >
       {label}
     </Typography>

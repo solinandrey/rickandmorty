@@ -9,7 +9,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const CharactersPage = observer(() => {
   const [query, setQuery] = useSearchParams();
@@ -75,7 +75,7 @@ const CharactersPage = observer(() => {
         label="Search by name"
         variant="outlined"
         onChange={searchByName}
-        sx={{ width: 500, marginBottom: "4rem" }}
+        sx={{ width: "30rem", marginBottom: "4rem" }}
       />
       {characters.charactersList.length ? (
         <>

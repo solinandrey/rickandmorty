@@ -18,6 +18,18 @@ html {
   height: 100%;
 }
 
+@media  only screen and (max-width: 600px) {
+  html {
+    font-size: 2vw;
+  }
+}
+
+@media  only screen and (min-width: 1920px) {
+  html {
+    font-size: 0.7vw;
+  }
+}
+
 #root {
   height: 100%;
 }

@@ -1,11 +1,10 @@
-import { CharacterFull } from "@types";
+import { Link } from "react-router-dom";
 import { Typography} from "@mui/material";
 import { Box } from "@mui/system";
 
 import RowText from "@components/RowText";
+import { CharacterFull } from "@types";
 import StatusLabel from "@components/StatusLabel";
-import { Link } from "react-router-dom";
-
 import {
   mainInfoStyles,
   imageContainerStyles,

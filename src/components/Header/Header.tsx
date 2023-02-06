@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Container, Grid, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { observer } from "mobx-react-lite";
 
-import styles from "./Header.module.scss";
 import { uiState } from "@store";
+import { headerStyles, navItemStyles, navItemLabel } from "./HeaderStyles";
 
 const headerContent = [
   { label: "home", link: "/", id: "home" },
@@ -14,27 +14,14 @@ const headerContent = [
 const Header = observer(() => {
   if (uiState.currentPage !== "home") {
     return (
-      <Box className={styles.header}>
+      <Box sx={headerStyles}>
         {headerContent.map((item) => (
           <Box
             key={item.id}
-            className={`${styles.navItem} ${
-              uiState.currentPage === item.id ? styles.active : ""
-            }`}
+            sx={navItemStyles}
+            className={`${uiState.currentPage === item.id ? "active" : ""}`}
           >
-            <Typography
-              component={Link}
-              to={item.link}
-              sx={{
-                fontSize: "1.4rem",
-                fontFamily: "Francois One",
-                textDecoration: "none",
-                color: "#232323",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <Typography component={Link} to={item.link} sx={navItemLabel}>
               {item.label}
             </Typography>
           </Box>
@@ -42,7 +29,7 @@ const Header = observer(() => {
       </Box>
     );
   } else {
-    return null
+    return null;
   }
 });
 

@@ -8,6 +8,7 @@ import TableBlock from "@components/TableBlock";
 import LocationPopup from "@components/LocationPopup";
 import LocationCard from "@components/LocationCard";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { locations } from "@store";
 
 interface IProps {
   locationsList: LocationInfo[];
@@ -22,19 +23,22 @@ const LocationsList = observer(({ locationsList, page }: IProps) => {
   const nodeRef = useRef(null);
 
   useEffect(() => {
-    if (query.get("location")) {
+    const loc = query.get("location");
+    if (loc) {
       setPopupOpened(true);
       setActiveLocation(Number(query.get("location")));
     }
-  }, [query]);
+  }, []);
 
   const closePopup = () => {
     setPopupOpened(false);
     setActiveLocation(null);
+    query.delete('location');
     setQuery({ page: query.get("page") || "1" });
   };
 
   const openPopup = (id: number) => {
+    console.log(id, 'open')
     setPopupOpened(true);
     setActiveLocation(id);
     setQuery({ page: query.get("page") || "1", location: id.toString() });
@@ -42,6 +46,7 @@ const LocationsList = observer(({ locationsList, page }: IProps) => {
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTableView(event.target.checked);
+    console.log(query.get('location'))
   };
 
   const makeTableList = (list: LocationInfo[]): TableList => {

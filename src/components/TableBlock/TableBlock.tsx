@@ -1,6 +1,4 @@
 import {
-  Box,
-  Grid,
   Table,
   TableBody,
   TableCell,
@@ -10,7 +8,6 @@ import {
   Paper,
   Button,
 } from "@mui/material";
-import { ReactNode } from "react";
 
 import { TableList } from "@types";
 

@@ -74,7 +74,7 @@ const LocationsPage = observer(() => {
         label="Search by name"
         variant="outlined"
         onChange={searchByName}
-        sx={{ width: 500, marginBottom: "2rem" }}
+        sx={{ width: "30rem", marginBottom: "2rem" }}
       />
       {locations.locationsList.length ? (
         <>

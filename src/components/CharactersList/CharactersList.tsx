@@ -1,17 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Grid, TextField, Box } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
+import { Grid, Box } from "@mui/material";
 import { useLocation, useSearchParams } from "react-router-dom";
-
-import CharacterCard from "../CharacterCard/CharacterCard";
-import { CharacterLite } from "@types";
-import CharacterPopup from "@components/CharacterPopup";
 import { observer } from "mobx-react-lite";
-import { characters } from "@store";
-import {
-  CSSTransition,
-  SwitchTransition,
-  TransitionGroup,
-} from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+
+import CharacterCard from "@components/CharacterCard/CharacterCard";
+import CharacterPopup from "@components/CharacterPopup";
+import { CharacterLite } from "@types";
+import {listStyles} from './CharacterListStyles';
 
 interface IProps {
   charactersList: CharacterLite[];
@@ -26,7 +22,6 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   const cards = useRef(null);
 
   useEffect(() => {
-    console.log('query changed', location.search)
     if (query.get("character")) {
       setPopupOpened(true);
       setActiveCharacter(Number(query.get("character")));
@@ -46,7 +41,7 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={listStyles}>
       {activeCharacter ? (
         <CharacterPopup
           id={activeCharacter}
@@ -61,7 +56,13 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
           timeout={200}
           classNames="fade"
         >
-          <Grid container spacing={2} component="div" ref={cards} className="cards">
+          <Grid
+            container
+            spacing={2}
+            component="div"
+            ref={cards}
+            className="cards"
+          >
             {charactersList?.map((val: CharacterLite) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={val.id}>
                 <CharacterCard
