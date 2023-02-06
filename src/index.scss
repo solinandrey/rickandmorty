@@ -30,6 +30,10 @@ html {
   animation: 0.5s fadeOut forwards;
 }
 
+.initIn {
+  animation: 0.5s initIn forwards;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -45,6 +49,28 @@ html {
   from {
     opacity: 1;
     transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(-20px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes initIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes initOut {
+  from {
+    opacity: 1;
+    transform: scale(0.5);
   }
   to {
     transform: translate(-20px, 0);
@@ -70,5 +96,26 @@ html {
 }
 .fade-enter-active.cards,
 .fade-exit-active.cards {
+  transition: opacity 200ms, transform 200ms;
+}
+
+.init-enter.cards {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.init-enter-active.cards {
+  opacity: 1;
+  transform: scale(1);
+}
+.init-exit.cards {
+  opacity: 1;
+  transform: scale(1);
+}
+.init-exit-active.cards {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.init-enter-active.cards,
+.init-exit-active.cards {
   transition: opacity 200ms, transform 200ms;
 }

@@ -1,11 +1,18 @@
-import styles from "./CharacterMain.module.scss";
 import { CharacterFull } from "@types";
-import { Grid, Typography, Container } from "@mui/material";
+import { Typography} from "@mui/material";
 import { Box } from "@mui/system";
 
 import RowText from "@components/RowText";
 import StatusLabel from "@components/StatusLabel";
 import { Link } from "react-router-dom";
+
+import {
+  mainInfoStyles,
+  imageContainerStyles,
+  statusStyles,
+  textInfoStyles,
+  nameStyles,
+} from "./CharacterMainStyles";
 
 interface IProps {
   info: CharacterFull;
@@ -15,25 +22,17 @@ const CharacterMain = ({
   info: { id, name, image, species, type, gender, origin, status, location },
 }: IProps) => {
   return (
-    <Box className={styles.mainInfo}>
-      <Box className={styles.imageContainer}>
+    <Box sx={mainInfoStyles}>
+      <Box sx={imageContainerStyles}>
         <img src={image} alt="" style={{ width: "100%" }} />
         {status && (
-          <Box className={styles.status}>
+          <Box sx={statusStyles}>
             <StatusLabel label={status} />
           </Box>
         )}
       </Box>
-      <Box className={styles.textInfo}>
-        <Typography
-          component="h4"
-          sx={{
-            fontSize: "3rem",
-            fontFamily: "Fjalla One",
-            lineHeight: 1,
-            marginBottom: "1rem",
-          }}
-        >
+      <Box sx={textInfoStyles}>
+        <Typography component="h4" sx={nameStyles}>
           {name}
         </Typography>
         <RowText title="Gender" value={gender} />

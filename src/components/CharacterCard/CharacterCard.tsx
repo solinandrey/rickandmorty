@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 
 import { CharacterLite } from "@types";
 import StatusLabel from "@components/StatusLabel";
-import styles from "./CharacterCard.module.scss";
+import {
+  nameStyle,
+  cardStyles,
+  textBlockStyles,
+  speciesStyles,
+  statusStyles,
+  cardImageStyles,
+  imageContainerStyles,
+} from "./CharacterCardStyles";
 
 interface IProps {
   character: CharacterLite;
@@ -15,42 +23,19 @@ const CharacterCard = ({
   onCharacterClick,
 }: IProps) => {
   return (
-    <Box className={styles.card} onClick={onCharacterClick} sx={{minHeight: '5.2rem'}}>
-      <Box
-        sx={{
-          width: "30%",
-        }}
-      >
-        <img src={image} className={styles.cardImage} />
+    <Box onClick={onCharacterClick} sx={cardStyles}>
+      <Box sx={imageContainerStyles}>
+        <img src={image} style={cardImageStyles} />
       </Box>
-      <Box sx={{ width: "65%", position: "relative" }}>
-        <Typography
-          component="h3"
-          sx={{
-            fontSize: "1.3rem",
-            color: "#232323",
-            display: "block",
-            lineHeight: "1",
-            fontFamily: "Fjalla One",
-          }}
-        >
+      <Box sx={textBlockStyles}>
+        <Typography component="h3" sx={nameStyle}>
           {name}
         </Typography>
-        <Typography
-          component="p"
-          sx={{ color: "#232323" }}
-          className={styles.species}
-        >
+        <Typography component="p" sx={speciesStyles}>
           {species}
         </Typography>
         {status && (
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-            }}
-          >
+          <Box sx={statusStyles}>
             <StatusLabel label={status} />
           </Box>
         )}

@@ -19,8 +19,10 @@ const CharactersPage = observer(() => {
   useEffect(() => {
     characters.getCharacters(Number(query.get("page")) || 1);
     uiState.setPage("characters");
+    setPage(Number(query.get("page")));
     if (!query.get("page")) {
       setQuery({ page: "1" });
+      setPage(1);
     }
   }, []);
 
@@ -40,7 +42,9 @@ const CharactersPage = observer(() => {
     setSearchTimeout(() => {
       return window.setTimeout(() => {
         characters.getCharacters(1, event.target.value);
-        onPageChange({} as React.ChangeEvent<unknown>, 1);
+        const params = { page: '1' };
+        setQuery(params);
+        setPage(1);
       }, 400);
     });
   };
@@ -75,7 +79,10 @@ const CharactersPage = observer(() => {
       />
       {characters.charactersList.length ? (
         <>
-          <CharactersList charactersList={characters.charactersList} page={page} />
+          <CharactersList
+            charactersList={characters.charactersList}
+            page={page}
+          />
           <Box
             sx={{
               width: "100%",

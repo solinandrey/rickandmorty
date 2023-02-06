@@ -37,9 +37,13 @@ const LocationsPage = observer(() => {
     if (searchTimeout) {
       clearTimeout(searchTimeout);
     }
+    const searchText = event.target.value;
     setSearchTimeout(() => {
       return window.setTimeout(() => {
-        locations.getLocations(1, event.target.value);
+        locations.getLocations(1, searchText);
+        const params = { page: '1' };
+        setQuery(params);
+        setPage(1);
       }, 400);
     });
   };
@@ -72,7 +76,7 @@ const LocationsPage = observer(() => {
         onChange={searchByName}
         sx={{ width: 500, marginBottom: "2rem" }}
       />
-      {locations.locationsList.length || true ? (
+      {locations.locationsList.length ? (
         <>
           <LocationsList locationsList={locations.locationsList} page={page} />
           <Box

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Grid, TextField, Box } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import CharacterCard from "../CharacterCard/CharacterCard";
 import { CharacterLite } from "@types";
@@ -22,9 +22,11 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   const [popupOpened, setPopupOpened] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState<number | null>(null);
   const [query, setQuery] = useSearchParams();
+  const location = useLocation();
   const cards = useRef(null);
 
   useEffect(() => {
+    console.log('query changed', location.search)
     if (query.get("character")) {
       setPopupOpened(true);
       setActiveCharacter(Number(query.get("character")));
@@ -61,7 +63,7 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
         >
           <Grid container spacing={2} component="div" ref={cards} className="cards">
             {charactersList?.map((val: CharacterLite) => (
-              <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Grid item xs={12} sm={6} md={4} lg={3} key={val.id}>
                 <CharacterCard
                   character={val}
                   key={val.id}
