@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-request";
 
 export const GET_ALL_CHARACTERS = gql`
   query GetAllCharacters($page: Int!, $filter: String) {
