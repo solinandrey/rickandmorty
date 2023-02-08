@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Grid, Box } from "@mui/material";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
@@ -18,7 +18,6 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   const [popupOpened, setPopupOpened] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState<number | null>(null);
   const [query, setQuery] = useSearchParams();
-  const location = useLocation();
   const cards = useRef(null);
 
   useEffect(() => {

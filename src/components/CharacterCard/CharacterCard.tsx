@@ -22,20 +22,20 @@ const CharacterCard = ({
   onCharacterClick,
 }: IProps) => {
   return (
-    <Box onClick={onCharacterClick} sx={cardStyles}>
+    <Box onClick={onCharacterClick} sx={cardStyles} data-testid={`character-${id}`}>
       <Box sx={imageContainerStyles}>
         <img src={image} style={cardImageStyles} />
       </Box>
       <Box sx={textBlockStyles}>
-        <Typography component="h3" sx={nameStyle}>
+        <Typography component="h3" sx={nameStyle} data-testid="character-name">
           {name}
         </Typography>
-        <Typography component="p" sx={speciesStyles}>
+        <Typography component="p" sx={speciesStyles} data-testid="character-species">
           {species}
         </Typography>
         {status && (
-          <Box sx={statusStyles}>
-            <StatusLabel label={status} />
+          <Box sx={statusStyles} data-testid="character-status">
+            <StatusLabel label={status}/>
           </Box>
         )}
       </Box>

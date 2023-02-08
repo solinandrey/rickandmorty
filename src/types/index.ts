@@ -56,7 +56,7 @@ export interface LocationInfo {
   name: string;
   type: string;
   dimension: string;
-  residents: CharacterFull[];
+  residents?: CharacterFull[];
 }
 
 export type SitePage = "home" | "characters" | "locations";
