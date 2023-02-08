@@ -23,7 +23,8 @@ const LocationsList = observer(({ locationsList, page }: IProps) => {
   const nodeRef = useRef(null);
 
   useEffect(() => {
-    const loc = query.get("location");
+    const params = new URLSearchParams(window.location.search)
+    const loc = params.get('location');
     if (loc) {
       setPopupOpened(true);
       setActiveLocation(Number(query.get("location")));
@@ -34,19 +35,20 @@ const LocationsList = observer(({ locationsList, page }: IProps) => {
     setPopupOpened(false);
     setActiveLocation(null);
     query.delete('location');
-    setQuery({ page: query.get("page") || "1" });
+    query.set('page', '1');
+    setQuery(query);
   };
 
   const openPopup = (id: number) => {
-    console.log(id, 'open')
     setPopupOpened(true);
     setActiveLocation(id);
-    setQuery({ page: query.get("page") || "1", location: id.toString() });
+    query.set('page', query.get("page") || "1");
+    query.set('location', id.toString());
+    setQuery(query);
   };
 
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTableView(event.target.checked);
-    console.log(query.get('location'))
   };
 
   const makeTableList = (list: LocationInfo[]): TableList => {

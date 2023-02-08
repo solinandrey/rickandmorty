@@ -7,7 +7,7 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import CharacterCard from "@components/CharacterCard/CharacterCard";
 import CharacterPopup from "@components/CharacterPopup";
 import { CharacterLite } from "@types";
-import {listStyles} from './CharacterListStyles';
+import { listStyles } from "./CharacterListStyles";
 
 interface IProps {
   charactersList: CharacterLite[];
@@ -21,7 +21,9 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   const cards = useRef(null);
 
   useEffect(() => {
-    if (query.get("character")) {
+    const params = new URLSearchParams(window.location.search)
+    const character = params.get('character');
+    if (character) {
       setPopupOpened(true);
       setActiveCharacter(Number(query.get("character")));
     }
@@ -30,13 +32,23 @@ const CharactersList = observer(({ charactersList, page }: IProps) => {
   const closePopup = () => {
     setPopupOpened(false);
     setActiveCharacter(null);
-    setQuery({ page: String(page) || "1" });
+
+    setQuery((query) => {
+      query.delete("character");
+      query.set("page", "1");
+      return query;
+    });
   };
 
   const openPopup = (id: number) => {
     setPopupOpened(true);
     setActiveCharacter(id);
-    setQuery({ page: String(page) || "1", character: id.toString() });
+
+    setQuery((query) => {
+      query.set("page", String(page) || "1");
+      query.set("character", id.toString());
+      return query;
+    });
   };
 
   return (
