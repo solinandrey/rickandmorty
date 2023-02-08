@@ -1,4 +1,4 @@
-import { request, gql } from "graphql-request";
+import { request } from "graphql-request";
 import {
   GET_ALL_CHARACTERS,
   GET_ALL_LOCATIONS,
@@ -9,7 +9,6 @@ import {
   GetAllCharactersResponse,
   CharacterFull,
   GetAllLocationsResponse,
-  CharacterLite,
   GetLocationResidentsResponse,
 } from "@types";
 

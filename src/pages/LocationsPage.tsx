@@ -9,7 +9,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const LocationsPage = observer(() => {
   const [query, setQuery] = useSearchParams();

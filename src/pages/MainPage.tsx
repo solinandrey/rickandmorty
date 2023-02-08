@@ -1,6 +1,6 @@
-import { Typography, Container, Box, Button } from "@mui/material";
+import { Container, Box, Button } from "@mui/material";
 import { uiState } from "@store";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import mainImage from "../assets/mainPage.png";
 import { Link } from "react-router-dom";
 import { keyframes } from "@mui/material";
@@ -11,15 +11,6 @@ const imageAnim = keyframes`
   }
   to {
     transform: scale(0.95);
-  }
-`;
-
-const imageInitAnim = keyframes`
-  from {
-    transform: scale(0.5);
-  }
-  to {
-    transform: scale(1);
   }
 `;
 
@@ -55,19 +46,12 @@ const imageStyle = {
 };
 
 const MainPage = () => {
-  const [mounted, setMounted] = useState(false);
-  const mainBlock = useRef(null);
   useEffect(() => {
     uiState.setPage("home");
-    setTimeout(() => {
-      setMounted(true);
-    }, 500);
-
   }, []);
 
   return (
     <Container
-      ref={mainBlock}
       sx={{
         display: "flex",
         flexDirection: "column",
